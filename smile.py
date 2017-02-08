@@ -57,6 +57,7 @@ y,y,y,e,e,y,y,y,
 y,y,y,y,y,y,y,y
 ]
 
+x, y, z = sense.get_accelerometer_raw().values()
 
 sense.set_pixels(happy)
 time.sleep(1)
@@ -64,16 +65,10 @@ sense.set_pixels(wink)
 time.sleep(0.5)
 sense.set_pixels(smile)
 
+
 while True:
     shake = 1
-    acceleration = sense.get_accelerometer_raw()
-    x = acceleration['x']
-    y = acceleration['y']
-    z = acceleration['z']
-
-    x = abs(x)
-    y = abs(y)
-    z = abs(z)
+    x, y, z = sense.get_accelerometer_raw().values()
 
     if x > shake or y > shake or z > shake:
         sense.set_pixels(oh)
@@ -81,6 +76,8 @@ while True:
 	print str(x) + " X "
 	print str(y) + " Y "
 	print str(z) + " Z "
+	print "---------------"
 
     else:
         sense.set_pixels(smile)
+
